@@ -1,0 +1,12 @@
+<h1>Angular Recursive JSON Tree</h1>
+<ul>
+  <ng-template #recursiveTree let-list>
+    <li *ngFor="let item of list">
+      {{item.name}}
+      <ul *ngIf="item.categories.length > 0">
+        <ng-container *ngTemplateOutlet="recursiveTree; context:{ $implicit: item.categories }"></ng-container>
+      </ul>
+    </li>
+  </ng-template>
+  <ng-container *ngTemplateOutlet="recursiveTree; context:{ $implicit: list }"></ng-container>
+</ul>
